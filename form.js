@@ -1,9 +1,11 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('rentalForm');
 
     initSelects();
     initPhoneInput();
     initFormValidation();
+
 
     function initSelects() {
         const selects = document.querySelectorAll('.select');
@@ -328,7 +330,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
 // Русская локализация
 const russianLocale = {
     name: 'ru',
@@ -357,12 +358,63 @@ function formatRussianDate(start, end) {
     return `${startDay}-${endDay} ${month} ${year}`;
 }
 
+// Функция для форматирования отдельной даты
+function formatSingleDate(date) {
+    const months = [
+        'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+        'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+    ];
+
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+
+    return `${day} ${month}`;
+}
+
+// Расчет продолжительности
+function calculateDuration(startDate, endDate) {
+    const timeDiff = endDate.getTime() - startDate.getTime();
+    const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return daysDiff;
+}
+
+// Правильное склонение для дней
+function getDayText(days) {
+    if (days % 10 === 1 && days % 100 !== 11) {
+        return 'день';
+    } else if (days % 10 >= 2 && days % 10 <= 4 && (days % 100 < 10 || days % 100 >= 20)) {
+        return 'дня';
+    } else {
+        return 'дней';
+    }
+}
+
+// Обновление мобильного интерфейса дат
+function updateMobileDates(start, end) {
+    const startElement = document.getElementById('startDate');
+    const endElement = document.getElementById('endDate');
+    const durationElement = document.getElementById('durationText');
+
+    if (startElement && start) {
+        startElement.textContent = formatSingleDate(start);
+    }
+
+    if (endElement && end) {
+        endElement.textContent = formatSingleDate(end);
+    }
+
+    if (durationElement && start && end) {
+        const duration = calculateDuration(start, end);
+        durationElement.textContent = `${duration} ${getDayText(duration)}`;
+    }
+}
+
 // Создаем easepick
 const picker = new easepick.create({
     element: document.getElementById('easepickDates'),
     css: [
         'https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.0/dist/index.css',
-        "styles.css"
+        "form.css"
     ],
     plugins: [
         'RangePlugin',
@@ -395,14 +447,22 @@ const picker = new easepick.create({
             const displayText = formatRussianDate(start, end);
             const valueForInput = `${start.format('YYYY-MM-DD')}_${end.format('YYYY-MM-DD')}`;
 
-            // Обновляем интерфейс
+            // Обновляем десктопный интерфейс
             document.getElementById('datesValue').textContent = displayText;
             document.getElementById('datesValue').classList.remove('select__value--placeholder');
             document.getElementById('datesInput').value = valueForInput;
 
+            // Обновляем мобильный интерфейс
+            updateMobileDates(start, end);
+
             // Скрываем ошибку если есть
-            document.querySelector('.form-field__error').style.display = 'none';
-            document.querySelector('.form-field__error-icon').style.display = 'none';
+            const errorElement = document.querySelector('[data-field="dates"] .form-field__error');
+            const errorIcon = document.querySelector('[data-field="dates"] .form-field__error-icon');
+            if (errorElement) errorElement.style.display = 'none';
+            if (errorIcon) errorIcon.style.display = 'none';
+
+            const wrapper = document.querySelector('[data-field="dates"]');
+            if (wrapper) wrapper.classList.remove('form-field__wrapper--error');
         });
 
         // Обработчик скрытия календаря
@@ -412,21 +472,56 @@ const picker = new easepick.create({
     }
 });
 
-// Обработчик клика по триггеру - открываем календарь
+// Обработчики для десктопной версии
 document.getElementById('datesTrigger').addEventListener('click', function(e) {
     e.preventDefault();
     document.getElementById('datesSelect').classList.add('select--active');
     picker.show();
 });
 
+// Обработчики для мобильной версии
+document.getElementById('mobileDates').addEventListener('click', function(e) {
+    e.preventDefault();
+    picker.show();
+});
+
 // Закрываем календарь при клике вне области
 document.addEventListener('click', function(e) {
     const select = document.getElementById('datesSelect');
+    const mobileDates = document.getElementById('mobileDates');
     const pickerElement = document.querySelector('.easepick-wrapper');
 
-    if (!select.contains(e.target) && (!pickerElement || !pickerElement.contains(e.target))) {
+    if (!select.contains(e.target) && !mobileDates.contains(e.target) && (!pickerElement || !pickerElement.contains(e.target))) {
         select.classList.remove('select--active');
     }
+});
+
+// Установка дат по умолчанию
+function setDefaultDates() {
+    const defaultStart = new Date();
+    const defaultEnd = new Date();
+    defaultEnd.setDate(defaultEnd.getDate() + 14);
+
+    // Устанавливаем даты в календаре
+    picker.setDateRange(defaultStart, defaultEnd);
+
+    // Обновляем отображение как плейсхолдер
+    const displayText = formatRussianDate(defaultStart, defaultEnd);
+    document.getElementById('datesValue').textContent = displayText;
+    document.getElementById('datesValue').classList.add('select__value--placeholder');
+
+    // Сохраняем даты по умолчанию в data-атрибут, а не в value
+    document.getElementById('datesInput').setAttribute('data-placeholder-dates', `${defaultStart.toISOString().split('T')[0]}_${defaultEnd.toISOString().split('T')[0]}`);
+
+    // Оставляем value ПУСТЫМ
+    document.getElementById('datesInput').value = "";
+
+    updateMobileDates(defaultStart, defaultEnd);
+}
+
+// Инициализация при загрузке
+document.addEventListener('DOMContentLoaded', function() {
+    setDefaultDates();
 });
 
 //

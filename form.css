@@ -34,21 +34,22 @@ body {
 .search-form__form {
     background: #ffffff;
     border-radius: 30px;
-    padding: 30px 45px;
+    padding: 30px 25px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
-
+.search-form__footer {
+    margin-top: -23px;
+}
 .search-form__vehicle-types {
     display: flex;
-    gap: 19px;
-    margin-bottom: 34px;
+    gap: 28px;
+    margin-bottom: 14px;
 }
 
 .search-form__fields {
     display: flex;
     gap: 20px;
     align-items: flex-start;
-    margin-bottom: 17px;
 }
 
 .search-form__footer {
@@ -109,7 +110,7 @@ body {
 
 .radio-button__label {
     font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 24px;
     color: #171d23;
 }
@@ -126,7 +127,6 @@ body {
     flex: 1;
     min-width: 0;
 }
-
 .form-field:nth-child(1) {
     max-width: 240px;
 }
@@ -137,6 +137,8 @@ body {
 
 .form-field:nth-child(3) {
     max-width: 289px;
+    width: 289px;
+    flex: 0 0 289px;
 }
 
 .form-field:nth-child(4) {
@@ -148,7 +150,7 @@ body {
     font-size: 14px;
     line-height: 20px;
     color: #787c7f;
-    text-align: center;
+    text-align: start;
 }
 
 .form-field__wrapper {
@@ -156,7 +158,6 @@ body {
 }
 
 .form-field__error {
-    position: absolute;
     bottom: -18px;
     left: 0;
     font-size: 12px;
@@ -177,7 +178,7 @@ body {
 .form-field__error-icon {
     position: absolute;
     right: 12px;
-    top: 50%;
+    top: 35%;
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
@@ -214,14 +215,14 @@ body {
     text-align: left;
 }
 
-.select__trigger:hover {
-    border-color: #288dff;
-}
+/*.select__trigger:hover {*/
+/*    border-color: #288dff;*/
+/*}*/
 
-.select__trigger:focus {
-    outline: none;
-    border-color: #288dff;
-}
+/*.select__trigger:focus {*/
+/*    outline: none;*/
+/*    border-color: #288dff;*/
+/*}*/
 
 .select__icon {
     width: 24px;
@@ -242,9 +243,9 @@ body {
 }
 
 .select__arrow {
-    width: 12px;
-    height: 12px;
-    color: #8f9295;
+    width: 24px;
+    height: 24px;
+    color: #555657;
     flex-shrink: 0;
     transition: transform 0.2s ease;
 }
@@ -292,10 +293,10 @@ body {
     background: #f9fafb;
 }
 
-.select__option--selected {
-    background: #e0f2fe;
-    color: #288dff;
-}
+/*.select__option--selected {*/
+/*    background: #e0f2fe;*/
+/*    color: #288dff;*/
+/*}*/
 
 .input-with-icon {
     width: 100%;
@@ -310,9 +311,9 @@ body {
     transition: border-color 0.2s ease;
 }
 
-.input-with-icon:focus-within {
-    border-color: #288dff;
-}
+/*.input-with-icon:focus-within {*/
+/*    border-color: #288dff;*/
+/*}*/
 
 .input-with-icon__icon {
     width: 24px;
@@ -450,22 +451,30 @@ body {
 .checkbox--error .checkbox__error {
     display: block;
 }
+/* Скрываем стрелку при ошибке */
+.form-field__wrapper--error .select__arrow-data {
+    display: none !important;
+}
 
+/* Показываем стрелку по умолчанию */
+.select__arrow-data {
+    display: block;
+}
 /*календарь*/
 /* Позиционирование календаря */
 .container.lock-plugin.range-plugin {
     z-index: 1001 !important;
-    top: 48px !important;
-    left: -35px !important;
+    top: 44px !important;
+    left: -12px !important;
 }
 .container {
     position: relative;
 }
 /* Стили для активного состояния */
-.select--active .select__trigger {
-    border-color: #007bff;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
-}
+/*.select--active .select__trigger {*/
+/*    border-color: #007bff;*/
+/*    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);*/
+/*}*/
 
 .select__value--placeholder {
     color: #6c757d;
@@ -474,6 +483,95 @@ body {
 .select__value {
     color: #212529;
 }
+.mobile-dates {
+    display: none;
+}
+
+.rental-date {
+    position: relative;
+    width: 100%;
+    height: 53px;
+    background: #f9fafb;
+    border: 1px solid #8f9295;
+    border-radius: 6px;
+    padding: 0 12px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+/*.rental-date:hover {*/
+/*    border-color: #288dff;*/
+/*}*/
+
+.date-label {
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 24px;
+    color: #787c7f;
+}
+
+.start-label {
+    position: absolute;
+    top: 4px;
+    left: 12px;
+}
+
+.end-label {
+    position: absolute;
+    top: 4px;
+    right: 12px;
+    text-align: right;
+}
+
+.date-value {
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #000000;
+}
+
+.start-value {
+    position: absolute;
+    top: 24px;
+    left: 12px;
+}
+
+.end-value {
+    position: absolute;
+    top: 24px;
+    right: 12px;
+    text-align: right;
+}
+
+.duration-badge {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 61px;
+    height: 21px;
+    background: #f4f7fc;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.duration-text {
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 24px;
+    color: #787c7f;
+}
+
+/* Стили для ошибок в мобильной версии */
+.form-field__wrapper--error .rental-date {
+    border-color: #ef4444;
+}
+
 
 @media screen and (max-width: 1440px) {
     .search-form {
@@ -486,7 +584,7 @@ body {
 
     .form-field:nth-child(1),
     .form-field:nth-child(2) {
-        max-width: 220px;
+        max-width: 170px;
     }
 
     .form-field:nth-child(3) {
@@ -495,9 +593,13 @@ body {
 
     .form-field:nth-child(4) {
         max-width: 230px;
+        margin-top: -20px;
+    }
+    .search-form__footer {
+        margin-top: 0;
     }
     .container.lock-plugin.range-plugin {
-        left: -55px !important;
+        left: -23px !important;
     }
 }
 
@@ -525,10 +627,13 @@ body {
 
     .button {
         width: 100%;
-        margin-top: 15px;
+        margin-top: 0;
     }
     .container.lock-plugin.range-plugin {
         left: 0 !important;
+    }
+    .form-field:nth-child(4) {
+        margin-top: 0;
     }
 }
 
@@ -566,10 +671,6 @@ body {
         margin-bottom: 4px;
     }
 
-    .button {
-        margin-top: 10px;
-    }
-
     .search-form__footer {
         flex-direction: column;
         gap: 15px;
@@ -595,20 +696,59 @@ body {
         left: 0;
         bottom: -20px;
     }
-
 }
 
 @media screen and (max-width: 480px) {
-    .search-form__form {
-        padding: 15px 12px;
+
+    .desktop-dates {
+        display: none;
     }
 
+    .mobile-dates {
+        display: block;
+    }
+
+    .rental-date {
+        height: 53px;
+    }
+    /* Скрываем поля "Получение" и "Возврат" */
+    .form-field:nth-child(1),
+    .form-field:nth-child(2) {
+        display: none;
+    }
+
+    /* Скрываем label "Даты аренды" и "Ваш номер WhatsApp или Telegram" */
+    .form-field:nth-child(3) .form-field__label,
+    .form-field:nth-child(4) .form-field__label {
+        display: none;
+    }
+
+    /* Делаем оставшиеся поля (даты и телефон) на всю ширину как кнопка */
+    .form-field:nth-child(3),
+    .form-field:nth-child(4) {
+        max-width: 100%;
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    /* Убеждаемся, что кнопка и поля имеют одинаковую ширину */
+    .search-form__fields {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .button {
+        width: 100%;
+        margin-top: 6px;
+    }
+    .search-form__form {
+        padding: 16px 13px;
+    }
+    .search-form__vehicle-types {
+        margin-bottom: 10px;
+    }
     .search-form__vehicle-types {
         gap: 15px;
-    }
-
-    .form-field__label {
-        font-size: 12px;
     }
 
     .select__trigger,
@@ -627,15 +767,55 @@ body {
     }
 
     .checkbox__label {
-        font-size: 11px;
+        font-size: 13px;
+    }
+    .checkbox__error {
+        bottom: -24px;
+        padding-bottom: 12px;
+        left: 24px;
     }
     .container.lock-plugin.range-plugin {
-        top: 425px !important;
+        top: 205px !important;
         left: 27px !important;
-        max-width: 85% !important;
+        max-width: 88% !important;
+    }
+
+    /* Выравниваем по левому краю */
+    .search-form__vehicle-types,
+    .search-form__contact-types {
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    /* Убираем центрирование для vehicle-types */
+    .search-form__vehicle-types {
+        justify-content: flex-start;
+    }
+
+    /* Убеждаемся, что consent занимает всю ширину */
+    .search-form__consent {
+        order: 2;
+        width: 100%;
+    }
+    /* Скрываем стрелки в селектах */
+    .select__arrow {
+        display: none;
+    }
+
+    /* Скрываем иконки ошибок */
+    .form-field__error-icon {
+        display: none !important;
     }
 }
+@media screen and (min-width: 481px) {
+    .mobile-dates {
+        display: none;
+    }
 
+    .desktop-dates {
+        display: block;
+    }
+}
 @supports (-webkit-appearance: none) {
     .select__trigger,
     .input-with-icon__input {
