@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('rentalForm');
 
@@ -6,21 +5,20 @@ document.addEventListener('DOMContentLoaded', function() {
     initPhoneInput();
     initFormValidation();
 
-
     function initSelects() {
-        const selects = document.querySelectorAll('.select');
+        const selects = document.querySelectorAll('.par-select');
 
         selects.forEach(function(selectElement) {
-            const trigger = selectElement.querySelector('.select__trigger');
-            const dropdown = selectElement.querySelector('.select__dropdown');
-            const options = selectElement.querySelectorAll('.select__option');
-            const hiddenInput = selectElement.querySelector('.select__input');
-            const valueSpan = selectElement.querySelector('.select__value');
+            const trigger = selectElement.querySelector('.par-select__trigger');
+            const dropdown = selectElement.querySelector('.par-select__dropdown');
+            const options = selectElement.querySelectorAll('.par-select__option');
+            const hiddenInput = selectElement.querySelector('.par-select__input');
+            const valueSpan = selectElement.querySelector('.par-select__value');
 
             trigger.addEventListener('click', function(e) {
                 e.preventDefault();
                 closeAllSelects(selectElement);
-                selectElement.classList.toggle('select--open');
+                selectElement.classList.toggle('par-select--open');
             });
 
             options.forEach(function(option) {
@@ -30,35 +28,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     hiddenInput.value = value;
                     valueSpan.textContent = text;
-                    valueSpan.classList.remove('select__value--placeholder');
+                    valueSpan.classList.remove('par-select__value--placeholder');
 
                     options.forEach(function(opt) {
-                        opt.classList.remove('select__option--selected');
+                        opt.classList.remove('par-select__option--selected');
                     });
-                    option.classList.add('select__option--selected');
+                    option.classList.add('par-select__option--selected');
 
-                    selectElement.classList.remove('select--open');
+                    selectElement.classList.remove('par-select--open');
 
-                    const wrapper = selectElement.closest('.form-field__wrapper');
+                    const wrapper = selectElement.closest('.par-form-field__wrapper');
                     if (wrapper) {
-                        wrapper.classList.remove('form-field__wrapper--error');
+                        wrapper.classList.remove('par-form-field__wrapper--error');
                     }
                 });
             });
         });
 
         document.addEventListener('click', function(e) {
-            if (!e.target.closest('.select')) {
+            if (!e.target.closest('.par-select')) {
                 closeAllSelects();
             }
         });
     }
 
     function closeAllSelects(except) {
-        const selects = document.querySelectorAll('.select');
+        const selects = document.querySelectorAll('.par-select');
         selects.forEach(function(select) {
             if (select !== except) {
-                select.classList.remove('select--open');
+                select.classList.remove('par-select--open');
             }
         });
     }
@@ -155,11 +153,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Валидация
-            const wrapper = phoneInput.closest('.form-field__wrapper');
+            const wrapper = phoneInput.closest('.par-form-field__wrapper');
             if (wrapper) {
                 const cleanValue = e.target.value.replace(/\D/g, '');
                 if (cleanValue.length >= 11) {
-                    wrapper.classList.remove('form-field__wrapper--error');
+                    wrapper.classList.remove('par-form-field__wrapper--error');
                 }
             }
         });
@@ -259,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         consentCheckbox.addEventListener('change', function() {
             if (consentCheckbox.checked) {
-                consentLabel.classList.remove('checkbox--error');
+                consentLabel.classList.remove('par-checkbox--error');
             }
         });
 
@@ -283,10 +281,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const datesWrapper = document.querySelector('[data-field="dates"]');
 
         if (!datesInput.value) {
-            datesWrapper.classList.add('form-field__wrapper--error');
+            datesWrapper.classList.add('par-form-field__wrapper--error');
             isValid = false;
         } else {
-            datesWrapper.classList.remove('form-field__wrapper--error');
+            datesWrapper.classList.remove('par-form-field__wrapper--error');
         }
 
         const phoneInput = document.querySelector('input[name="phone"]');
@@ -294,20 +292,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const phoneValue = phoneInput.value.replace(/\D/g, '');
 
         if (!phoneValue || phoneValue.length < 11) {
-            phoneWrapper.classList.add('form-field__wrapper--error');
+            phoneWrapper.classList.add('par-form-field__wrapper--error');
             isValid = false;
         } else {
-            phoneWrapper.classList.remove('form-field__wrapper--error');
+            phoneWrapper.classList.remove('par-form-field__wrapper--error');
         }
 
         const consentCheckbox = document.querySelector('input[name="consent"]');
         const consentLabel = document.getElementById('consentCheckbox');
 
         if (!consentCheckbox.checked) {
-            consentLabel.classList.add('checkbox--error');
+            consentLabel.classList.add('par-checkbox--error');
             isValid = false;
         } else {
-            consentLabel.classList.remove('checkbox--error');
+            consentLabel.classList.remove('par-checkbox--error');
         }
 
         return isValid;
@@ -328,7 +326,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return formData;
     }
 });
-
 
 // Русская локализация
 const russianLocale = {
@@ -435,6 +432,7 @@ const picker = new easepick.create({
         minDays: 1,
         inseparable: true,
     },
+    lang: 'ru',
     locale: russianLocale,
     format: 'DD.MM.YYYY',
     zIndex: 1000,
@@ -449,25 +447,25 @@ const picker = new easepick.create({
 
             // Обновляем десктопный интерфейс
             document.getElementById('datesValue').textContent = displayText;
-            document.getElementById('datesValue').classList.remove('select__value--placeholder');
+            document.getElementById('datesValue').classList.remove('par-select__value--placeholder');
             document.getElementById('datesInput').value = valueForInput;
 
             // Обновляем мобильный интерфейс
             updateMobileDates(start, end);
 
             // Скрываем ошибку если есть
-            const errorElement = document.querySelector('[data-field="dates"] .form-field__error');
-            const errorIcon = document.querySelector('[data-field="dates"] .form-field__error-icon');
+            const errorElement = document.querySelector('[data-field="dates"] .par-form-field__error');
+            const errorIcon = document.querySelector('[data-field="dates"] .par-form-field__error-icon');
             if (errorElement) errorElement.style.display = 'none';
             if (errorIcon) errorIcon.style.display = 'none';
 
             const wrapper = document.querySelector('[data-field="dates"]');
-            if (wrapper) wrapper.classList.remove('form-field__wrapper--error');
+            if (wrapper) wrapper.classList.remove('par-form-field__wrapper--error');
         });
 
         // Обработчик скрытия календаря
         picker.on('hide', () => {
-            document.getElementById('datesSelect').classList.remove('select--active');
+            document.getElementById('datesSelect').classList.remove('par-select--active');
         });
     }
 });
@@ -475,7 +473,7 @@ const picker = new easepick.create({
 // Обработчики для десктопной версии
 document.getElementById('datesTrigger').addEventListener('click', function(e) {
     e.preventDefault();
-    document.getElementById('datesSelect').classList.add('select--active');
+    document.getElementById('datesSelect').classList.add('par-select--active');
     picker.show();
 });
 
@@ -492,7 +490,7 @@ document.addEventListener('click', function(e) {
     const pickerElement = document.querySelector('.easepick-wrapper');
 
     if (!select.contains(e.target) && !mobileDates.contains(e.target) && (!pickerElement || !pickerElement.contains(e.target))) {
-        select.classList.remove('select--active');
+        select.classList.remove('par-select--active');
     }
 });
 
@@ -508,7 +506,7 @@ function setDefaultDates() {
     // Обновляем отображение как плейсхолдер
     const displayText = formatRussianDate(defaultStart, defaultEnd);
     document.getElementById('datesValue').textContent = displayText;
-    document.getElementById('datesValue').classList.add('select__value--placeholder');
+    document.getElementById('datesValue').classList.add('par-select__value--placeholder');
 
     // Сохраняем даты по умолчанию в data-атрибут, а не в value
     document.getElementById('datesInput').setAttribute('data-placeholder-dates', `${defaultStart.toISOString().split('T')[0]}_${defaultEnd.toISOString().split('T')[0]}`);
@@ -523,18 +521,3 @@ function setDefaultDates() {
 document.addEventListener('DOMContentLoaded', function() {
     setDefaultDates();
 });
-
-//
-// // Если нужна предзаполненная дата по умолчанию
-// // Установка дат по умолчанию (например, на 3 дня вперед)
-// const defaultStart = new Date();
-// const defaultEnd = new Date();
-// defaultEnd.setDate(defaultEnd.getDate() + 3);
-//
-// picker.setDateRange(defaultStart, defaultEnd);
-//
-// // Инициализация текста по умолчанию
-// const displayText = formatRussianDate(defaultStart, defaultEnd);
-// document.getElementById('datesValue').textContent = displayText;
-// document.getElementById('datesValue').classList.remove('select__value--placeholder');
-// document.getElementById('datesInput').value = `${defaultStart.toISOString().split('T')[0]}_${defaultEnd.toISOString().split('T')[0]}`;

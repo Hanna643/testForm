@@ -11,169 +11,167 @@
     <link rel="stylesheet" href="./form.css">
 </head>
 <body>
-<div class="page">
+<div class="par-page">
 
-    <div class="search-form">
-        <form class="search-form__form" id="rentalForm" novalidate>
-            <div class="search-form__vehicle-types">
-                <label class="radio-button">
-                    <input type="radio" name="vehicle" value="auto" class="radio-button__input" checked>
-                    <span class="radio-button__custom"></span>
-                    <span class="radio-button__label">Авто</span>
+    <div class="par-search-form">
+        <form class="par-search-form__form" id="rentalForm" novalidate>
+            <div class="par-search-form__vehicle-types">
+                <label class="par-radio-button">
+                    <input type="radio" name="vehicle" value="auto" class="par-radio-button__input" checked>
+                    <span class="par-radio-button__custom"></span>
+                    <span class="par-radio-button__label">Авто</span>
                 </label>
-                <label class="radio-button">
-                    <input type="radio" name="vehicle" value="motobikes" class="radio-button__input">
-                    <span class="radio-button__custom"></span>
-                    <span class="radio-button__label">Мотобайки</span>
+                <label class="par-radio-button">
+                    <input type="radio" name="vehicle" value="motobikes" class="par-radio-button__input">
+                    <span class="par-radio-button__custom"></span>
+                    <span class="par-radio-button__label">Мотобайки</span>
                 </label>
             </div>
 
-            <div class="search-form__fields">
-                <div class="form-field">
-                    <label class="form-field__label">Получение</label>
-                    <div class="form-field__wrapper" data-field="pickup">
-                        <div class="select" id="pickupSelect">
-                            <button type="button" class="select__trigger">
-                                <svg class="select__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="par-search-form__fields">
+                <div class="par-form-field">
+                    <label class="par-form-field__label">Получение</label>
+                    <div class="par-form-field__wrapper" data-field="pickup">
+                        <div class="par-select" id="pickupSelect">
+                            <button type="button" class="par-select__trigger">
+                                <svg class="par-select__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                <span class="select__value">Аэропорт</span>
-                                <svg class="select__arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <span class="par-select__value">Аэропорт</span>
+                                <svg class="par-select__arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </button>
-                            <input type="hidden" name="pickup" value="airport" class="select__input">
-                            <ul class="select__dropdown">
-                                <li class="select__option" data-value="airport">Аэропорт</li>
-                                <li class="select__option" data-value="hotel">Отель</li>
-                                <li class="select__option" data-value="office">Офис</li>
+                            <input type="hidden" name="pickup" value="airport" class="par-select__input">
+                            <ul class="par-select__dropdown">
+                                <li class="par-select__option" data-value="airport">Аэропорт</li>
+                                <li class="par-select__option" data-value="hotel">Отель</li>
+                                <li class="par-select__option" data-value="office">Офис</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-field">
-                    <label class="form-field__label">Возврат</label>
-                    <div class="form-field__wrapper" data-field="return">
-                        <div class="select" id="returnSelect">
-                            <button type="button" class="select__trigger">
-                                <svg class="select__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div class="par-form-field">
+                    <label class="par-form-field__label">Возврат</label>
+                    <div class="par-form-field__wrapper" data-field="return">
+                        <div class="par-select" id="returnSelect">
+                            <button type="button" class="par-select__trigger">
+                                <svg class="par-select__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                <span class="select__value">Там же</span>
-                                <svg class="select__arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <span class="par-select__value">Там же</span>
+                                <svg class="par-select__arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </button>
-                            <input type="hidden" name="return" value="same" class="select__input">
-                            <ul class="select__dropdown">
-                                <li class="select__option" data-value="same">Там же</li>
-                                <li class="select__option" data-value="airport">Аэропорт</li>
-                                <li class="select__option" data-value="hotel">Отель</li>
-                                <li class="select__option" data-value="office">Офис</li>
+                            <input type="hidden" name="return" value="same" class="par-select__input">
+                            <ul class="par-select__dropdown">
+                                <li class="par-select__option" data-value="same">Там же</li>
+                                <li class="par-select__option" data-value="airport">Аэропорт</li>
+                                <li class="par-select__option" data-value="hotel">Отель</li>
+                                <li class="par-select__option" data-value="office">Офис</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-field">
-                    <label class="form-field__label">Даты аренды</label>
-                    <div class="form-field__wrapper" data-field="dates">
+                <div class="par-form-field">
+                    <label class="par-form-field__label">Даты аренды</label>
+                    <div class="par-form-field__wrapper" data-field="dates">
                         <!-- Скрытое поле для easepick -->
-                        <input type="text" class="select__dropdown" id="easepickDates" style="display: none;">
+                        <input type="text" class="par-select__dropdown" id="easepickDates" style="display: none;">
 
                         <!-- Десктопная версия -->
-                        <div class="select desktop-dates" id="datesSelect">
-                            <button type="button" class="select__trigger" id="datesTrigger">
-                                <svg class="select__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <div class="par-select par-desktop-dates" id="datesSelect">
+                            <button type="button" class="par-select__trigger" id="datesTrigger">
+                                <svg class="par-select__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                <span class="select__value select__value--placeholder" id="datesValue">16-30 сентября 2025</span>
-                                <svg class="select__arrow select__arrow-data" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <span class="par-select__value par-select__value--placeholder" id="datesValue">16-30 сентября 2025</span>
+                                <svg class="par-select__arrow par-select__arrow-data" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </button>
-                            <input type="hidden" name="dates" value="" class="select__input" id="datesInput">
+                            <input type="hidden" name="dates" value="" class="par-select__input" id="datesInput">
                         </div>
 
                         <!-- Мобильная версия -->
-                        <div class="mobile-dates" id="mobileDates">
-                            <div class="rental-date">
-                                <div class="date-label start-label">Старт аренды</div>
-                                <div class="date-value start-value" id="startDate">17 сентября</div>
-                                <div class="duration-badge">
-                                    <span class="duration-text" id="durationText">14 дней</span>
+                        <div class="par-mobile-dates" id="mobileDates">
+                            <div class="par-rental-date">
+                                <div class="par-date-label par-start-label">Старт аренды</div>
+                                <div class="par-date-value par-start-value" id="startDate">17 сентября</div>
+                                <div class="par-duration-badge">
+                                    <span class="par-duration-text" id="durationText">14 дней</span>
                                 </div>
-                                <div class="date-label end-label">Конец аренды</div>
-                                <div class="date-value end-value" id="endDate">1 октября</div>
+                                <div class="par-date-label par-end-label">Конец аренды</div>
+                                <div class="par-date-value par-end-value" id="endDate">1 октября</div>
                             </div>
                         </div>
 
-                        <svg class="form-field__error-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="par-form-field__error-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2"/>
                             <path d="M10 6V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                             <circle cx="10" cy="14" r="1" fill="currentColor"/>
                         </svg>
-                        <span class="form-field__error">Укажите корректные даты аренды</span>
+                        <span class="par-form-field__error">Укажите корректные даты аренды</span>
                     </div>
                 </div>
 
-                <div class="form-field">
-                    <label class="form-field__label">Ваш номер WhatsApp или Telegram</label>
-                    <div class="form-field__wrapper" data-field="phone">
-                        <div class="input-with-icon">
-                            <svg class="input-with-icon__icon"width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div class="par-form-field">
+                    <label class="par-form-field__label">Ваш номер WhatsApp или Telegram</label>
+                    <div class="par-form-field__wrapper" data-field="phone">
+                        <div class="par-input-with-icon">
+                            <svg class="par-input-with-icon__icon"width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="7" y="2" width="10" height="20" rx="2" ry="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 <rect x="10.5" y="18" width="3" height="1.5" rx="0.75" ry="0.75" fill="currentColor"/>
                             </svg>
-                            <input type="tel" name="phone" class="input-with-icon__input" placeholder="+7 (000) 000-00-00" value="" inputmode="numeric"
+                            <input type="tel" name="phone" class="par-input-with-icon__input" placeholder="+7 (000) 000-00-00" value="" inputmode="numeric"
                                    pattern="[0-9]*">
                         </div>
-                        <svg class="form-field__error-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="par-form-field__error-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2"/>
                             <path d="M10 6V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                             <circle cx="10" cy="14" r="1" fill="currentColor"/>
                         </svg>
-                        <span class="form-field__error">Укажите корретный номер</span>
+                        <span class="par-form-field__error">Укажите корретный номер</span>
                     </div>
-                    <div class="search-form__contact-types">
-                        <label class="radio-button radio-button--small">
-                            <input type="radio" name="contact" value="whatsapp" class="radio-button__input" checked="">
-                            <span class="radio-button__custom"></span>
-                            <span class="radio-button__label">WhatsApp</span>
+                    <div class="par-search-form__contact-types">
+                        <label class="par-radio-button par-radio-button--small">
+                            <input type="radio" name="contact" value="whatsapp" class="par-radio-button__input" checked="">
+                            <span class="par-radio-button__custom"></span>
+                            <span class="par-radio-button__label">WhatsApp</span>
                         </label>
-                        <label class="radio-button radio-button--small">
-                            <input type="radio" name="contact" value="telegram" class="radio-button__input">
-                            <span class="radio-button__custom"></span>
-                            <span class="radio-button__label">Telegram</span>
+                        <label class="par-radio-button par-radio-button--small">
+                            <input type="radio" name="contact" value="telegram" class="par-radio-button__input">
+                            <span class="par-radio-button__custom"></span>
+                            <span class="par-radio-button__label">Telegram</span>
                         </label>
                     </div>
                 </div>
 
-                <button type="submit" class="button button--primary">
+                <button type="submit" class="par-button par-button--primary">
                     Отправить заявку
                 </button>
             </div>
 
-            <div class="search-form__footer">
-                <div class="search-form__consent">
-                    <label class="checkbox" id="consentCheckbox">
-                        <input type="checkbox" name="consent" class="checkbox__input">
-                        <span class="checkbox__custom"></span>
-                        <span class="checkbox__label">
+            <div class="par-search-form__footer">
+                <div class="par-search-form__consent">
+                    <label class="par-checkbox" id="consentCheckbox">
+                        <input type="checkbox" name="consent" class="par-checkbox__input">
+                        <span class="par-checkbox__custom"></span>
+                        <span class="par-checkbox__label">
                 Даю согласие на обработку персональных данных в соответствии с
-                <a href="#" class="checkbox__link">Политикой конфиденциальности</a>
+                <a href="#" class="par-checkbox__link">Политикой конфиденциальности</a>
               </span>
-                        <span class="checkbox__error">Это поле обязательно</span>
+                        <span class="par-checkbox__error">Это поле обязательно</span>
                     </label>
                 </div>
-
-
             </div>
         </form>
     </div>
